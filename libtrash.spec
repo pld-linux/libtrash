@@ -1,14 +1,14 @@
-Summary:        Libraries to move files to a trash on delete
-Summary(pl):    Biblioteka do automatycznego przenoszenia usuwanych plików do kosza
+Summary:	Libraries to move files to a trash on delete
+Summary(pl):	Biblioteka do automatycznego przenoszenia usuwanych plików do kosza
 Name:		libtrash
-Version:        1.1
-Release:        1
+Version:	1.1
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://www.m-arriaga.net/software/libtrash/%{name}-%{version}.tgz
 Patch0:		%{name}-Makefile.patch
 URL:		http://www.m-arriaga.net/software/libtrash/
-BuildRoot:      %{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 If configured to be preloaded by the dynamic linker, libtrash will
@@ -42,11 +42,11 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_sysconfdir}}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post    -p /sbin/ldconfig
+%postun  -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc CHANGE.LOG README config.txt
 %attr(755,root,root) %{_libdir}/libtrash.so.*.*
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/libtrash.conf
-
-%post    -p /sbin/ldconfig
-%postun  -p /sbin/ldconfig
