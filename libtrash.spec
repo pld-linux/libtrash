@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://www.m-arriaga.net/software/libtrash/%{name}-%{version}.tgz
+# Source0-md5:	5ee3b3a126b00b1478556440f24cc15a
 Patch0:		%{name}-Makefile.patch
 URL:		http://www.m-arriaga.net/software/libtrash/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
