@@ -1,13 +1,11 @@
 Summary:        Libraries to move files to a trash on delete
-Summary(pl):    Biblioteka do automatycznego przenoszenia  usuwanych  pliki do kosza
+Summary(pl):    Biblioteka do automatycznego przenoszenia usuwanych plików do kosza
 Name:		libtrash
 Version:        0.9
 Release:        1
 License:	GPL
-Group:		System Environment/Libraries
-Provides:	libtrash
-Autoreqprov:	on
-Source0:	%{name}-%{version}.tgz
+Group:		Libraries
+Source0:	http://www.m-arriaga.net/software/libtrash/%{name}-%{version}.tgz
 Patch0:		%{name}-Makefile.patch
 URL:		http://www.m-arriaga.net/software/libtrash/
 BuildRoot:      %{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -19,11 +17,10 @@ instead of actually removing them. After the fake "remove", the files
 are available in a directory structure similar as the old one.
 
 %description -l pl
-Jesli konfiguracja byla preladowana przez dynamiczny linker
-libtrash spowoduje ze aplikacje  przesuwajac plik 
-do katalogu smietnika niezaleznie od aktaulnego usunieci jej
-po usunieciu pliki bede dostepne w strukturze katalogow dokladnie jak przed usunieciem.
-
+Po skonfigurowaniu tak, by by³a ³adowana przez dynamiczny linker,
+biblioteka libtrash powoduje, ¿e aplikacje zamiast kasowaæ przenosz±
+pliki do specjalnego katalogu (kosza). Po tym "usuniêciu" pliki s±
+dostêpne w strukturze katalogów podobnej do tej sprzed usuniêcia.
 
 %prep
 %setup -q
@@ -34,11 +31,14 @@ po usunieciu pliki bede dostepne w strukturze katalogow dokladnie jak przed usun
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_sysconfdir}}
-%{__make} install INSTLIBDIR=$RPM_BUILD_ROOT%{_libdir} SYSCONFFILE=$RPM_BUILD_ROOT%{_sysconfdir}/libtrash.conf
+
+%{__make} install \
+	INSTLIBDIR=$RPM_BUILD_ROOT%{_libdir} \
+	SYSCONFFILE=$RPM_BUILD_ROOT%{_sysconfdir}/libtrash.conf
 
 gzip -9nf CHANGE.LOG README config.txt
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -46,7 +46,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz 
 %attr(755,root,root) %{_libdir}/libtrash*
-%{_sysconfdir}/libtrash.conf
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/libtrash.conf
 
 %post    -p /sbin/ldconfig
 %postun  -p /sbin/ldconfig
