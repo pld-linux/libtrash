@@ -1,7 +1,7 @@
 Summary:        Libraries to move files to a trash on delete
 Summary(pl):    Biblioteka do automatycznego przenoszenia usuwanych plików do kosza
 Name:		libtrash
-Version:        0.9
+Version:        1.1
 Release:        1
 License:	GPL
 Group:		Libraries
@@ -37,14 +37,12 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_sysconfdir}}
 	INSTLIBDIR=$RPM_BUILD_ROOT%{_libdir} \
 	SYSCONFFILE=$RPM_BUILD_ROOT%{_sysconfdir}/libtrash.conf
 
-gzip -9nf CHANGE.LOG README config.txt
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz 
+%doc CHANGE.LOG README config.txt
 %attr(755,root,root) %{_libdir}/libtrash.so.*.*
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/libtrash.conf
 
