@@ -27,7 +27,9 @@ dostêpne w strukturze katalogów podobnej do tej sprzed usuniêcia.
 %patch -p1
 
 %build
-%{__make}
+%{__make} \
+	CC=%{__cc} \
+	CFLAGS="%{rpmcflags} -D_REENTRANT"
 
 %install
 rm -rf $RPM_BUILD_ROOT
