@@ -1,5 +1,5 @@
-Summary:        move files to a trash on delete
-Summary(pl):    przenies usuwane pliki do kosza
+Summary:        Libraries to move files to a trash on delete
+Summary(pl):    Biblioteka do automatycznego przenoszenia  usuwanych  pliki do kosza
 Name:		libtrash
 Version:        0.9
 Release:        1
@@ -9,19 +9,20 @@ Provides:	libtrash
 Autoreqprov:	on
 Source0:	%{name}-%{version}.tgz
 Patch0:		%{name}-Makefile.patch
+URL:		http://www.m-arriaga.net/software/libtrash/
 BuildRoot:      %{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 If configured to be preloaded by the dynamic linker, libtrash will
 cause applications to transparently move files to a trash directory
 instead of actually removing them. After the fake "remove", the files
-are available in a directory structure similar as the old one. To
-activate the library, please read the documentation in
-/usr/share/doc/packages/libtrash/. Note: The configuration file
-/etc/libtrash.conf only shows the compile-time configuration of the
-library, changes to this file have no effect. Users who wish to change
-options of the library should place an own configuration file in their
-home directory.
+are available in a directory structure similar as the old one.
+
+%description -l pl
+Jesli konfiguracja byla preladowana przez dynamiczny linker
+libtrash spowoduje ze aplikacje  przesuwajac plik 
+do katalogu smietnika niezaleznie od aktaulnego usunieci jej
+po usunieciu pliki bede dostepne w strukturze katalogow dokladnie jak przed usunieciem.
 
 
 %prep
@@ -43,7 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz ../HOME-.libtrash
+%doc *.gz 
 %attr(755,root,root) %{_libdir}/libtrash*
 %{_sysconfdir}/libtrash.conf
 
