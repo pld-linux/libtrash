@@ -45,7 +45,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz 
-%attr(755,root,root) %{_libdir}/libtrash*
+%attr(755,root,root) %{_libdir}/libtrash.so.*.*
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/libtrash.conf
 
 %post    -p /sbin/ldconfig
