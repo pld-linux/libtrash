@@ -1,7 +1,7 @@
 Summary:	Libraries to move files to a trash on delete
 Summary(pl):	Biblioteka do automatycznego przenoszenia usuwanych plików do kosza
 Name:		libtrash
-Version:	1.2
+Version:	1.3
 Release:	1
 License:	GPL
 Group:		Libraries
