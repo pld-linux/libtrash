@@ -1,14 +1,12 @@
---- libtrash-0.9/src/Makefile	Thu Mar 21 02:59:41 2002
-+++ libtrash-0.9/src/Makefile.orig	Mon Apr  1 13:49:31 2002
-@@ -26,9 +26,8 @@
-         -o libtrash.so.${VERSION} -ldl -lm
- 	
+diff -ruN libtrash-1.1.old/src/Makefile libtrash-1.1/src/Makefile
+--- libtrash-1.1.old/src/Makefile	Sun May 26 20:27:13 2002
++++ libtrash-1.1/src/Makefile	Sun Jun  2 12:02:41 2002
+@@ -28,7 +28,7 @@
  install-libtrash: 
--	TRASH_OFF=YES ginstall libtrash.so.${VERSION} ${INSTLIBDIR}/libtrash.so.${VERSION}
--	TRASH_OFF=YES ginstall libtrash.conf.sys --mode a=r ${SYSCONFFILE}
+ 	TRASH_OFF=YES install libtrash.so.${VERSION} ${INSTLIBDIR}/libtrash.so.${VERSION}
+ 	TRASH_OFF=YES install libtrash.conf.sys --mode a=r ${SYSCONFFILE}
 -	ldconfig	
-+	TRASH_OFF=YES install libtrash.so.${VERSION} ${INSTLIBDIR}/libtrash.so.${VERSION}
-+	TRASH_OFF=YES install libtrash.conf.sys --mode a=r ${SYSCONFFILE}
++	
  
  clean:
  	rm -f *~
