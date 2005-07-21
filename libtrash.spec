@@ -48,6 +48,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGE.LOG README config.txt
+%doc CHANGE.LOG README config.txt TODO
 %attr(755,root,root) %{_libdir}/libtrash.so.*.*
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/libtrash.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/libtrash.conf
