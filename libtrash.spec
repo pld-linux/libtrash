@@ -5,7 +5,7 @@ Version:	2.4
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://pages.stern.nyu.edu/~marriaga/software/libtrash/%{name}-latest.tgz
+Source0:	http://pages.stern.nyu.edu/~marriaga/software/libtrash/%{name}-%{version}.tgz
 # Source0-md5:	c335bf506cfe2433d16df71dc29acfc3
 Patch0:		%{name}-Makefile.patch
 URL:		http://pages.stern.nyu.edu/~marriaga/software/libtrash/
@@ -29,7 +29,7 @@ dostêpne w strukturze katalogów podobnej do tej sprzed usuniêcia.
 
 %build
 %{__make} \
-	CC=%{__cc} \
+	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -D_REENTRANT"
 
 %install
