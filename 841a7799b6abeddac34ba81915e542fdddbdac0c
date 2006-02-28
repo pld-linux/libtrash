@@ -1,0 +1,1 @@
+- use CC=%{__cc} and CFLAGS="%{rpmcflags} -D_REENTRANT" during compile.
