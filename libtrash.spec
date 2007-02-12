@@ -1,5 +1,5 @@
 Summary:	Libraries to move files to a trash on delete
-Summary(pl):	Biblioteka do automatycznego przenoszenia usuwanych plików do kosza
+Summary(pl.UTF-8):   Biblioteka do automatycznego przenoszenia usuwanych plikÃ³w do kosza
 Name:		libtrash
 Version:	2.4
 Release:	1
@@ -17,11 +17,11 @@ cause applications to transparently move files to a trash directory
 instead of actually removing them. After the fake "remove", the files
 are available in a directory structure similar as the old one.
 
-%description -l pl
-Po skonfigurowaniu tak, by by³a ³adowana przez dynamiczny linker,
-biblioteka libtrash powoduje, ¿e aplikacje zamiast kasowaæ przenosz±
-pliki do specjalnego katalogu (kosza). Po tym "usuniêciu" pliki s±
-dostêpne w strukturze katalogów podobnej do tej sprzed usuniêcia.
+%description -l pl.UTF-8
+Po skonfigurowaniu tak, by byÅ‚a Å‚adowana przez dynamiczny linker,
+biblioteka libtrash powoduje, Å¼e aplikacje zamiast kasowaÄ‡ przenoszÄ…
+pliki do specjalnego katalogu (kosza). Po tym "usuniÄ™ciu" pliki sÄ…
+dostÄ™pne w strukturze katalogÃ³w podobnej do tej sprzed usuniÄ™cia.
 
 %prep
 %setup -q
