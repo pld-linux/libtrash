@@ -2,12 +2,13 @@ Summary:	Libraries to move files to a trash on delete
 Summary(pl.UTF-8):	Biblioteka do automatycznego przenoszenia usuwanych plików do kosza
 Name:		libtrash
 Version:	3.2
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://pages.stern.nyu.edu/~marriaga/software/libtrash/%{name}-%{version}.tgz
 # Source0-md5:	56f7b54f50d760e4719f73b98cd8b43a
 Patch0:		%{name}-Makefile.patch
+Patch1:		%{name}-py24.patch
 URL:		http://pages.stern.nyu.edu/~marriaga/software/libtrash/
 BuildRequires:	perl-base
 BuildRequires:	python
@@ -28,6 +29,7 @@ dostępne w strukturze katalogów podobnej do tej sprzed usunięcia.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} \
