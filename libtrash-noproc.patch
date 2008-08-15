@@ -1,0 +1,12 @@
+--- libtrash-3.2/src/Makefile~	2008-08-15 18:32:27.000000000 +0300
++++ libtrash-3.2/src/Makefile	2008-08-15 18:32:48.545555398 +0300
+@@ -19,9 +19,6 @@
+ libtrash: libtrash.so.${VERSION}
+ 
+ libtrash.so.${VERSION}: $(SRC) ../libtrash.conf
+-	echo CHECKING FOR A WORKING PROC FILESYSTEM...
+-	ls -d /proc/self/fd
+-	echo GOOD, YOU SEEM TO HAVE A PROC FS
+ 	$(CC) $(CFLAGS) -o linking-helper linking-helper.c
+ 	perl -w ../scripts/trimheader.pl
+ 	perl -w ../scripts/genheader.pl
