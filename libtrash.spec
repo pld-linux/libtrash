@@ -42,6 +42,10 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_sysconfdir}}
 	INSTLIBDIR=$RPM_BUILD_ROOT%{_libdir} \
 	SYSCONFFILE=$RPM_BUILD_ROOT%{_sysconfdir}/libtrash.conf
 
+# no devel package
+ldconfig -N -n $RPM_BUILD_ROOT%{_libdir}
+rm -f $RPM_BUILD_ROOT%{_libdir}/libtrash.so
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -52,4 +56,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGE.LOG README config.txt TODO
 %attr(755,root,root) %{_libdir}/libtrash.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libtrash.so.3
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/libtrash.conf
