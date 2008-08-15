@@ -9,6 +9,7 @@ Source0:	http://pages.stern.nyu.edu/~marriaga/software/libtrash/%{name}-%{versio
 # Source0-md5:	56f7b54f50d760e4719f73b98cd8b43a
 Patch0:		%{name}-Makefile.patch
 Patch1:		%{name}-py24.patch
+Patch2:		%{name}-noproc.patch
 URL:		http://pages.stern.nyu.edu/~marriaga/software/libtrash/
 BuildRequires:	/sbin/ldconfig
 BuildRequires:	perl-base
@@ -31,6 +32,7 @@ dostępne w strukturze katalogów podobnej do tej sprzed usunięcia.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__make} \
