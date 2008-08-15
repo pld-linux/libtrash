@@ -1,0 +1,26 @@
+--- libtrash-3.2/scripts/get_symbol_versions.py~	2008-08-15 14:52:45.832409714 +0300
++++ libtrash-3.2/scripts/get_symbol_versions.py	2008-08-15 14:52:55.753240164 +0300
+@@ -45,7 +45,10 @@
+     
+     if status == None: return ("0", output) # os.popen() returns None if exit code == 0
+     
+-    return (str(os.WEXITSTATUS(status)) if os.WIFEXITED(status) else "EXITED ABNORMALLY", output)
++    if os.WIFEXITED(status):
++        return str(os.WEXITSTATUS(status), output)
++
++    return str("EXITED ABNORMALLY", output)
+ 
+ 
+ def main():
+@@ -170,9 +173,9 @@
+ 
+ if not \
+ (sys.version_info[0] > 2 or \
+-(sys.version_info[0] == 2 and sys.version_info[1] >= 5)):
++(sys.version_info[0] == 2 and sys.version_info[1] >= 4)):
+     
+-    print "You need to have Python >= 2.5 installed!"
++    print "You need to have Python >= 2.4 installed!"
+     sys.exit(1)
+     pass
+ 
