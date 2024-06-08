@@ -1,19 +1,16 @@
 Summary:	Libraries to move files to a trash on delete
 Summary(pl.UTF-8):	Biblioteka do automatycznego przenoszenia usuwanych plików do kosza
 Name:		libtrash
-Version:	3.2
-Release:	4
-License:	GPL
+Version:	3.7
+Release:	1
+License:	GPL v2+
 Group:		Libraries
-Source0:	http://pages.stern.nyu.edu/~marriaga/software/libtrash/%{name}-%{version}.tgz
-# Source0-md5:	56f7b54f50d760e4719f73b98cd8b43a
-Patch0:		%{name}-Makefile.patch
-Patch1:		%{name}-py24.patch
-Patch2:		%{name}-noproc.patch
-URL:		http://pages.stern.nyu.edu/~marriaga/software/libtrash/
-BuildRequires:	/sbin/ldconfig
-BuildRequires:	perl-base
-BuildRequires:	python
+Source0:	https://pages.stern.nyu.edu/~marriaga/software/libtrash/%{name}-%{version}.tgz
+# Source0-md5:	7eeda8187327588ad32bbcb80f33e796
+URL:		https://pages.stern.nyu.edu/~marriaga/software/libtrash/
+BuildRequires:	autoconf >= 2.69
+BuildRequires:	automake
+BuildRequires:	libtool >= 2:2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,26 +27,25 @@ dostępne w strukturze katalogów podobnej do tej sprzed usunięcia.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
-%{__make} \
-	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -D_REENTRANT"
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir},%{_sysconfdir}}
 
 %{__make} install \
-	INSTLIBDIR=$RPM_BUILD_ROOT%{_libdir} \
-	SYSCONFFILE=$RPM_BUILD_ROOT%{_sysconfdir}/libtrash.conf
+	DESTDIR=$RPM_BUILD_ROOT
 
 # no devel package
-/sbin/ldconfig -N -n $RPM_BUILD_ROOT%{_libdir}
-rm -f $RPM_BUILD_ROOT%{_libdir}/libtrash.so
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libtrash.{so,la}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -59,7 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGE.LOG README config.txt TODO
+%doc ChangeLog NEWS README.md TODO config.txt
 %attr(755,root,root) %{_libdir}/libtrash.so.*.*
 %attr(755,root,root) %ghost %{_libdir}/libtrash.so.3
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/libtrash.conf
